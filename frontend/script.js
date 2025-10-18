@@ -59,10 +59,15 @@ function displayResults(results, formData, resultDiv) {
     results.forEach((r) => {
         const workingAtHalt = r.working_at_halt || r.final_working_machines;
         
+        // Debug: check what properties the events actually have
+        if (r.events && r.events.length > 0) {
+            console.log("🔍 First event structure:", r.events[0]);
+        }
+
         html += `
             <div class="simulation-block">
                 <h3>🏭 Simulation #${r.simulation}</h3>
-                
+
                 <div class="result-grid">
                     <div class="result-item">
                         <strong>Time Until Factory Halt:</strong> ${r.time_until_halt ? r.time_until_halt + ' time units' : 'Did not halt'}
@@ -83,17 +88,24 @@ function displayResults(results, formData, resultDiv) {
 
                 <div class="explanation">
                     <p><strong>Explanation:</strong> ${getExplanation(r, formData.N, workingAtHalt)}</p>
-                    
+
                     ${r.events && r.events.length > 0 ? `
                     <details>
                         <summary>Show First ${Math.min(10, r.events.length)} Events</summary>
                         <div class="events-log">
-                            ${r.events.map(event => `
+                            ${r.events.map(event => {
+                                // Flexible property access - try multiple possible property names
+                                const working = event.working || event.working_after || event.working_before || 'N/A';
+                                const broken = event.broken || event.broken_after || event.broken_before || 'N/A';
+                                const machineId = event.machine_id !== undefined ? event.machine_id : 'N/A';
+
+                                return `
                                 <div class="event-item">
-                                    Time ${event.time}: ${event.type === 'FACTORY_HALT' ? '🏭 FACTORY HALTED' : `Machine ${event.machine_id} ${event.type}`} 
-                                    → Working: ${event.working_before}→${event.working_after}
+                                    Time ${event.time}: ${event.type === 'FACTORY_HALT' ? '🏭 FACTORY HALTED' : `Machine ${machineId} ${event.type}`}
+                                    → Working: ${working}, Broken: ${broken}
                                 </div>
-                            `).join('')}
+                                `;
+                            }).join('')}
                         </div>
                     </details>
                     ` : ''}
