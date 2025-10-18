@@ -1,10 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repairman Problem Simulation</title>
+  <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
-$END$
+  <div class="container">
+    <h1>⚙️ Repairman Problem Simulation</h1>
+
+    <div class="problem-description">
+      <h2>Problem Statement</h2>
+      <p>A factory has <strong>M</strong> identical machines that break down randomly. The factory requires at least <strong>N</strong> working machines to operate. When working machines fall below <strong>N</strong>, the factory halts production.</p>
+      <p><strong>Goal:</strong> Simulate the time until factory first halts production.</p>
+    </div>
+
+    <form id="simForm" class="form-compact">
+      <h2>Simulation Parameters</h2>
+      <div class="inputs">
+        <div class="input-group">
+          <label>Total Machines (M):</label>
+          <input type="number" name="M" value="10" min="1" required>
+          <span class="help-text">Total number of machines in factory</span>
+        </div>
+
+        <div class="input-group">
+          <label>Minimum Working Machines (N):</label>
+          <input type="number" name="N" value="6" min="1" required>
+          <span class="help-text">Minimum required working machines (N < M)</span>
+        </div>
+
+        <div class="input-group">
+          <label>Mean Repair Time:</label>
+          <input type="number" name="mean_repair" value="100" step="0.1" min="0.1" required>
+          <span class="help-text">Average time to repair a machine</span>
+        </div>
+
+        <div class="input-group">
+          <label>Repair Time Std Dev:</label>
+          <input type="number" name="std_repair" value="50" step="0.1" min="0" required>
+          <span class="help-text">Standard deviation of repair times</span>
+        </div>
+
+        <div class="input-group">
+          <label>Mean Breakdown Time:</label>
+          <input type="number" name="mean_break" value="300" step="0.1" min="0.1" required>
+          <span class="help-text">Average time between breakdowns</span>
+        </div>
+
+        <div class="input-group">
+          <label>Breakdown Time Std Dev:</label>
+          <input type="number" name="std_break" value="80" step="0.1" min="0" required>
+          <span class="help-text">Standard deviation of breakdown times</span>
+        </div>
+
+        <div class="input-group">
+          <label>Number of Simulations:</label>
+          <input type="number" name="num_simulations" value="5" min="1" max="100" required>
+          <span class="help-text">How many simulation runs to perform</span>
+        </div>
+      </div>
+
+      <button type="submit">Run Simulation</button>
+    </form>
+
+    <div id="result" class="result-section">
+      <!-- Simulation results will appear here -->
+    </div>
+
+    <div class="explanation">
+      <h2>How the Simulation Works</h2>
+      <div class="explanation-content">
+        <h3>Discrete-Event Simulation Approach:</h3>
+        <ul>
+          <li>Each machine starts in working state with a random breakdown time</li>
+          <li>When a machine breaks down, it moves to repair queue</li>
+          <li>After repair, machine returns to working state with new breakdown time</li>
+          <li>Simulation stops when working machines < N</li>
+          <li>Output: Time until factory halt and statistics</li>
+        </ul>
+
+        <h3>Default Parameters (from problem):</h3>
+        <ul>
+          <li><strong>M = 10</strong> total machines</li>
+          <li><strong>N = 6</strong> minimum working machines required</li>
+          <li><strong>Repair Time</strong>: Normal(μ=100, σ=50) - positive values only</li>
+          <li><strong>Breakdown Time</strong>: Normal(μ=300, σ=80) - positive values only</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
 </body>
 </html>

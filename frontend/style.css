@@ -1,0 +1,257 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* COMPACT FORM STYLES */
+form {
+  background: #f5f5f5;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Change 180px to 150px */
+  gap: 8px; /* Change 10px to 8px */
+  margin-bottom: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 3px;
+  font-weight: bold;
+  font-size: 0.85em;
+}
+
+input {
+  width: 100%;
+  padding: 5px 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.help-text {
+  font-size: 0.65em;
+  color: #666;
+  margin-top: 1px;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* Rest of your existing styles */
+.result-section {
+  margin-top: 30px;
+}
+
+.simulation-block {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.result-item {
+  background: #e9f7ff;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.events-log {
+  max-height: 200px;
+  overflow-y: auto;
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.event-item {
+  padding: 5px;
+  border-bottom: 1px solid #dee2e6;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.event-item:last-child {
+  border-bottom: none;
+}
+
+.summary {
+  background: #d4edda;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+details {
+  margin-top: 10px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.explanation {
+  margin-top: 15px;
+  padding: 15px;
+  background: #fff3cd;
+  border-radius: 4px;
+}
+
+.problem-description {
+  background: #e3f2fd;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border-left: 4px solid #2196f3;
+}
+
+.problem-description h2 {
+  color: #1976d2;
+  margin-top: 0;
+}
+
+.explanation {
+  background: #f3e5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 40px;
+  border-left: 4px solid #9c27b0;
+}
+
+.explanation h2 {
+  color: #7b1fa2;
+  margin-top: 0;
+}
+
+.explanation-content h3 {
+  color: #7b1fa2;
+  margin: 20px 0 10px 0;
+}
+
+.explanation-content ul {
+  margin-left: 20px;
+}
+
+.explanation-content li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2em;
+}
+
+/* Ultra-compact for very small screens */
+@media (max-width: 480px) {
+  .inputs {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  form {
+    padding: 12px;
+  }
+
+  .input-group {
+    margin-bottom: 3px;
+  }
+
+  input {
+    padding: 5px 6px;
+    font-size: 16px; /* Prevents zoom on mobile */
+  }
+
+  .help-text {
+    font-size: 0.65em;
+  }
+}
+
+/* COMPACT & ALIGNED FORM - Add this at the end of your CSS file */
+.inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Reduced width */
+  gap: 8px;
+  align-items: start; /* Align all items to top */
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure all help text aligns properly */
+.help-text {
+  font-size: 0.65em;
+  margin-top: 2px;
+  line-height: 1.2;
+}
